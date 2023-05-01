@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/me/CPP/Umap/build",
+  "command": "/usr/bin/g++   -g -fsanitize=address,undefined -Wall -Wextra -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wsign-conversion -Wnull-dereference -Wdouble-promotion -Wformat=2 -Werror -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wuseless-cast -g -std=c++20 -o CMakeFiles/unordered_map.dir/test.cpp.o -c /home/me/CPP/Umap/test.cpp",
+  "file": "/home/me/CPP/Umap/test.cpp"
+}
+]

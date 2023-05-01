@@ -1,0 +1,98 @@
+
+-------- sha256sum -c checksums --------
+test.sh: OK
+test.cpp: OK
+tiny_test.hpp: OK
+CMakeLists.txt: OK
+build.sh: OK
+.clang-tidy: OK
+
+-------- ./build.sh -DCMAKE_CXX_COMPILER=g++ -DCMAKE_C_COMPILER=gcc --------
+Building the project...
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/me/CPP/Umap/build
+calling make...
+building using 8 workers
+Consolidate compiler generated dependencies of target unordered_map
+[ 50%] Building CXX object CMakeFiles/unordered_map.dir/test.cpp.o
+[100%] Linking CXX executable unordered_map
+[100%] Built target unordered_map
+build ready
+
+-------- (failed) ./build/unordered_map --------
+Running group "construction and assignment"
+test "swap"
+1
+0 
+1
+0 
+1
+1 
+1
+1 
+1
+1 
+1
+1 
+1
+1 
+1
+1 
+1
+1 
+1
+1 
+1
+1 
+1
+1 
+1
+1 
+1
+1 
+1
+1 
+1
+1 
+1
+1 
+condition at /home/me/CPP/Umap/test.cpp, line 187:24 evaluated to false
+condition at /home/me/CPP/Umap/test.cpp, line 189:24 evaluated to false
+condition at /home/me/CPP/Umap/test.cpp, line 190:24 evaluated to false
+[[31mFAIL[0m]
+test "move assignment with unequal and not propagating allocator"
+1
+0 
+=================================================================
+==23463==ERROR: AddressSanitizer: attempting free on address which was not malloc()-ed: 0x7ffe0a853d70 in thread T0
+    #0 0x7f944a0b722f in operator delete(void*, unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:172
+    #1 0x564ebabe4989 in __gnu_cxx::new_allocator<List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node>::deallocate(List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node*, unsigned long) /usr/include/c++/11/ext/new_allocator.h:145
+    #2 0x564ebabdc032 in std::allocator<List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node>::deallocate(List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node*, unsigned long) /usr/include/c++/11/bits/allocator.h:199
+    #3 0x564ebabdc032 in NotPropagatedCountingAllocator<List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node>::deallocate(List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node*, unsigned long) /home/me/CPP/Umap/test.cpp:98
+    #4 0x564ebabd29b5 in std::allocator_traits<NotPropagatedCountingAllocator<List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node> >::deallocate(NotPropagatedCountingAllocator<List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node>&, List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node*, unsigned long) /usr/include/c++/11/bits/alloc_traits.h:345
+    #5 0x564ebabc1ce9 in List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::deallocNode(List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node*) /home/me/CPP/Umap/unordered_map.h:54
+    #6 0x564ebabd1ec6 in List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::erase(List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::BaseIterator<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node const>) /home/me/CPP/Umap/unordered_map.h:265
+    #7 0x564ebabc0bd3 in List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::pop_back() /home/me/CPP/Umap/unordered_map.h:298
+    #8 0x564ebababa35 in List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::clear() /home/me/CPP/Umap/unordered_map.h:131
+    #9 0x564ebab925e4 in List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::~List() /home/me/CPP/Umap/unordered_map.h:300
+    #10 0x564ebab830f8 in UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::~UnorderedMap() /home/me/CPP/Umap/unordered_map.h:760
+    #11 0x564ebab2a15e in operator()<testing::PrettyTest<create_constructor_tests()::<lambda(auto:30&)> > > /home/me/CPP/Umap/test.cpp:180
+    #12 0x564ebab2a346 in doTest /home/me/CPP/Umap/tiny_test.hpp:101
+    #13 0x564ebab5021b in testing::Test::operator()() /home/me/CPP/Umap/tiny_test.hpp:62
+    #14 0x564ebab51091 in testing::TestGroup::run() /home/me/CPP/Umap/tiny_test.hpp:239
+    #15 0x564ebaaf2503 in main /home/me/CPP/Umap/test.cpp:433
+    #16 0x7f9449029d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #17 0x7f9449029e3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #18 0x564ebaaef9a4 in _start (/home/me/CPP/Umap/build/unordered_map+0x1769a4)
+
+Address 0x7ffe0a853d70 is located in stack of thread T0 at offset 896 in frame
+    #0 0x564ebabc0a47 in List<UnorderedMap<int, NeitherDefaultNorCopyConstructible, std::hash<int>, std::equal_to<int>, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::Node, NotPropagatedCountingAllocator<std::pair<int const, NeitherDefaultNorCopyConstructible> > >::pop_back() /home/me/CPP/Umap/unordered_map.h:298
+
+  This frame has 1 object(s):
+    [32, 40) '<unknown>' <== Memory access at offset 896 overflows this variable
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
+      (longjmp and C++ exceptions *are* supported)
+SUMMARY: AddressSanitizer: bad-free ../../../../src/libsanitizer/asan/asan_new_delete.cpp:172 in operator delete(void*, unsigned long)
+==23463==ABORTING
+
